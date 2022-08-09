@@ -1,0 +1,50 @@
+1. To train a new font take or create a image file where all the text
+    charecter's are there.
+
+2. download jTessBoxEditor.
+3. open jTessBoxEditor:
+    * Tools->marge tiff-select file -> output file ->[train.my.exp0]
+
+4. from project directory:
+    Run command:
+    	this makes the box file. box contain the tif files cordinate, size and charecters
+        *tesseract train.my.exp0.tif train.my.exp0 batch.nochop makebox
+
+5. open jTessBoxEditor:
+	from this you edit the box file.
+    * Box editor -> open[train.my.exp0.tif] -> "set all the charecters how you discribe
+        and adjust the boxes size" -> save.
+
+6. from project directory:
+    run command:
+        *tesseract train.my.exp0.tif train.my.exp0 box.train
+        	this one creates training file. 'tr'
+        *unicharset_extractor train.my.exp0.box
+        	this one creates unicharecter from box file.
+        *echo "arial 0 0 1 0 0" > font_properties
+        	this creates a font properties but i have no idea what it does.
+        *mftraining -F font_properties -U unicharset -O train.unicharset train.my.exp0.tr
+        	this creates  three files for the training.
+        *cntraining train.my.exp0.tr
+        	this creates another training file for the training
+
+7. Rename the following files:
+    *shapetable -> train.shapetable
+    *inttemp ->train.inttemp
+    *pffmtable ->train.pffmtable
+    *normproto ->train.normproto
+
+8. from project directory:
+    run command:
+        *combine_tessdata train. "make sure to put dot at last"
+        	this combines all the data from all train file and creates traineddata.
+
+
+this will genarate a 'train.traineddata' file.
+move this file to tesseract train data folder.
+done.
+
+to check if it is working run command:
+    *tesseract imagefile stdout -l train 'train is the laguage that you trained'
+    
+for improve this traineddata try git train_tessereact
