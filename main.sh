@@ -5,14 +5,14 @@ combine_tessdata -e tesseract/tessdata/eng.traineddata eng.lstm
 
 rm -rf train/*
 tesseract/src/training/tesstrain.sh --fonts_dir fonts \
-	--fontlist 'Arial Th' \
-	--lang eng \
-	--linedata_only \
-	--langdata_dir langdata_lstm \
-	--tessdata_dir tesseract/tessdata \
-	--save_box_tiff \
-	--maxpages 10 \
-	--output_dir train
+--fontlist 'Arial Th' \
+--lang eng \
+--linedata_only \
+--langdata_dir langdata_lstm \
+--tessdata_dir tesseract/tessdata \
+--save_box_tiff \
+--maxpages 10 \
+--output_dir train
 
 rm -rf output/* 
 OMP_THREAD_LIMIT=16 lstmtraining \
