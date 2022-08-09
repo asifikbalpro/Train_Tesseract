@@ -37,14 +37,14 @@ Using this program you can train new Font for Tesseract
         use gitzip to download the matched laguage.
         
         put all the files from the zip file to langdata_lstm/
-    4.  open main.sh in editor
+    4.  open jupyter notebook and open main.ipynb
     5.  open font file and see font name.
     6.  put that font name on --fontlist 'here font name'
     7.  increase maxpages for more improvement
     8.  increase max_iterations for more improment and low error rate.
     9. save the file.
     10  put font file on font folder.
-    11. run main.sh file. " . main.sh"
+    11. run all cell on main.ipynb.
     12. goto output folder. and copy the font_name.traineddata and rename into name.traineddata
     13. put this name.traineddata in main tesseract-ocr/4.0/tessdata/
 
